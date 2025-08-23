@@ -11,7 +11,7 @@ resource "aws_instance" "app_server" {
     inline = [
       "sudo apt update",
       "sudo apt install -y nodejs npm git",
-      "git clone https://github.com/seu-usuario/seu-repo.git /home/ubuntu/app",
+      "git clone https://github.com/lucasmsardi/meu-projeto.git /home/ubuntu/app",
       "cd /home/ubuntu/app && npm install && npm run build",
       "npm start"
     ]

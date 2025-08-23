@@ -1,13 +1,29 @@
 terraform {
+  required_version = ">= 1.5.0"
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.0"
     }
   }
-  required_version = ">= 1.5.0"
 }
 
-provider "aws" {
-  region = var.aws_region
+provider "null" {}
+
+variable "repo_url" {
+  type        = string
+  default     = "https://github.com/lucasmsardi/devopsPUCRS.git"
+}
+
+resource "null_resource" "app_clone" {
+  provisioner "local-exec" {
+    command = <<EOT
+      echo "Clonando o repositório para teste..."
+      git clone ${var.repo_url} ./app
+      echo "Instalando dependências e build (simulado)..."
+      cd ./app
+      echo "npm install"
+      echo "npm run build"
+    EOT
+  }
 }
