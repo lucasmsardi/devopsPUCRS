@@ -10,11 +10,6 @@ terraform {
 
 provider "null" {}
 
-variable "repo_url" {
-  type        = string
-  default     = "https://github.com/lucasmsardi/devopsPUCRS.git"
-}
-
 resource "null_resource" "app_clone" {
   provisioner "local-exec" {
     command = <<EOT
