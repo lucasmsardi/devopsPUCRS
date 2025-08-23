@@ -7,3 +7,8 @@ Thumbs.db
 
 dist/
 build/
+
+.terraformrc
+terraform.rc
+*.tfstate
+*.tfstate.backup
