@@ -23,7 +23,7 @@ resource "aws_instance" "app" {
     amazon-linux-extras install docker -y
     service docker start
     usermod -a -G docker ec2-user
-    docker run -d -p 3000:3000 sha256:fdcb498fd5d64c2390168935a78d9f1442496ead5e7b2c02d0d7537d8e9ae02f
+    docker run -d -p 3000:3000 sha256:a20dfd6946b40880b22b00b748a2aa0608998d7b6492f4052307163b9ecc92cd
   EOF
 
 }
