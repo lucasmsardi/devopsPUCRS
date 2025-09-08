@@ -31,3 +31,6 @@ jobs:
 
       - name: Aplicar Terraform
         run: cd terraform && terraform apply -auto-approve
+
+      - name: Pegar IP Publico
+        run: cd terraform && terraform output -raw public_ip
