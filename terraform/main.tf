@@ -45,13 +45,3 @@ resource "aws_instance" "app" {
     docker run -d -p 3000:3000 sha256:a20dfd6946b40880b22b00b748a2aa0608998d7b6492f4052307163b9ecc92cd
   EOF
 }
-
-output "instance_id" {
-  description = "ID of the EC2 instance"
-  value       = aws_instance.app.id
-}
-
-output "public_ip" {
-  description = "Public IP of the EC2 instance"
-  value       = aws_instance.app.public_ip
-}
