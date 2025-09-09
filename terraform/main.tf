@@ -45,7 +45,9 @@ resource "aws_instance" "app" {
     yum update -y
     amazon-linux-extras install docker -y
     systemctl start docker
+
     docker pull lucasmsardi/devops:latest
-    docker run -d -p 3000:3000 lucasmsardi/devops:latest
+    docker rm -f devops-container || true
+    docker run -d --name devops-container -p 3000:3000 lucasmsardi/devops:latest
   EOF
 }
