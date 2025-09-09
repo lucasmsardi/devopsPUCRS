@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "app_sg" {
-  name        = "devops-project"
+  name        = "devops-project-2"
   description = "Allow access to app"
 
   ingress {
@@ -29,6 +29,10 @@ resource "aws_security_group" "app_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_instance" "app" {
@@ -36,12 +40,12 @@ resource "aws_instance" "app" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 
-        user_data = <<-EOF
-          #!/bin/bash
-          yum update -y
-          amazon-linux-extras install docker -y
-          systemctl start docker
-          docker pull lucasmsardi/devops:latest
-          docker run -d -p 3000:3000 lucasmsardi/devops:latest
-        EOF
+  user_data = <<-EOF
+    #!/bin/bash
+    yum update -y
+    amazon-linux-extras install docker -y
+    systemctl start docker
+    docker pull lucasmsardi/devops:latest
+    docker run -d -p 3000:3000 lucasmsardi/devops:latest
+  EOF
 }
