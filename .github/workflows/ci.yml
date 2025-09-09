@@ -26,6 +26,9 @@ jobs:
       - name: Inicializar Terraform
         run: cd terraform && terraform init
 
+      - name: Destruir Infra Anterior
+        run: cd terraform && terraform destroy -auto-approve
+
       - name: Planejar Terraform
         run: cd terraform && terraform plan
 
