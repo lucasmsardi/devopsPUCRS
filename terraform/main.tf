@@ -36,12 +36,12 @@ resource "aws_instance" "app" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 
-  user_data = <<-EOF
-    #!/bin/bash
-    yum update -y
-    amazon-linux-extras install docker -y
-    service docker start
-    usermod -a -G docker ec2-user
-    docker run -d -p 3000:3000 sha256:a20dfd6946b40880b22b00b748a2aa0608998d7b6492f4052307163b9ecc92cd
-  EOF
+        user_data = <<-EOF
+          #!/bin/bash
+          yum update -y
+          amazon-linux-extras install docker -y
+          systemctl start docker
+          docker pull lucasmsardi/devops:latest
+          docker run -d -p 3000:3000 lucasmsardi/devops:latest
+        EOF
 }
