@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "app_sg" {
-  name        = "devops-project-2"
+  name        = "devops-project-3"
   description = "Allow access to app"
 
   ingress {
